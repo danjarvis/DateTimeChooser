@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" xmlns:ns1="ctz.flex.components.*" viewSourceURL="srcview/index.html">
+	<mx:Style>
+		FormItem {
+			font-size: 12px;
+		}
+	</mx:Style>
+	<ns1:DateTimeField id="dtc" 
+		selectedDateTime="{new Date()}" 
+		showTime="{this.rdgShowTime.selectedValue == 0}" 
+		is24Hour="{this.rdg24Hour.selectedValue == 0}"  />
+		
+	<mx:Form>
+		<mx:FormItem label="Selected Date:" height="22">
+			<mx:Label text="{this.dtc.selectedDateTime.toString()}"/>
+		</mx:FormItem>
+		<mx:FormItem label="Show Time Controls?" height="22">
+			<mx:HBox width="100%">
+				<mx:RadioButtonGroup id="rdgShowTime"/>
+				<mx:RadioButton label="Yes" groupName="rdgShowTime" selected="true" value="0"/>
+				<mx:RadioButton label="No" groupName="rdgShowTime" value="1" />
+			</mx:HBox>
+		</mx:FormItem>
+		<mx:FormItem label="24 Hour Clock?" height="22">
+			<mx:HBox width="100%">
+				<mx:RadioButtonGroup id="rdg24Hour"/>
+				<mx:RadioButton label="Yes" groupName="rdg24Hour" value="0"/>
+				<mx:RadioButton label="No" groupName="rdg24Hour" selected="true" value="1" />
+			</mx:HBox>
+		</mx:FormItem>
+	</mx:Form>
+</mx:Application>
