@@ -597,5 +597,15 @@ package ctz.flex.components
 			this.bShowSeparatorLabelChanged = true;
 			this.invalidateProperties();
 		}
+
+		/**
+		 * Return only the time portion as hh:mm:ss
+		 */
+		public function getTime():String
+		{
+			if (!this._showTime)
+				return "";
+			return this.dtDateField.selectedDate.getHours() + ":" + this.dtDateField.selectedDate.getMinutes() + ":" + this.dtDateField.selectedDate.getSeconds();
+		}
 	}
 }
