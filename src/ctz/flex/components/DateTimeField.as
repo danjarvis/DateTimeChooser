@@ -47,6 +47,9 @@ package ctz.flex.components
 		private var _showTime:Boolean = false;
 
 		[Inspectable(category="Other", type="Boolean", enumeration="true,false")]
+		private var _showDate:Boolean = false;
+
+		[Inspectable(category="Other", type="Boolean", enumeration="true,false")]
 		private var _showLabels:Boolean = false;
 
 		[Inspectable(category="Other", type="Boolean", enumeration="true,false")]
@@ -55,6 +58,7 @@ package ctz.flex.components
 		private var _meridianArray:Array = [{string:"AM", value:0}, {string:"PM", value:1}];
 
 		private var bShowTimeChanged:Boolean = false;
+		private var bShowDateChanged:Boolean = false;
 		private var bIs24HourChanged:Boolean = false;
 		private var bShowLabelsChanged:Boolean = false;
 		private var bShowSeparatorLabelChanged:Boolean = false;
@@ -283,11 +287,19 @@ package ctz.flex.components
 			if (this._showTime) {
 				this.addTimeFields();
 			}
+			this.dtDateField.visible = this._showDate;
+			this.dtDateField.includeInLayout = this._showDate;
 		}
 
 		override protected function commitProperties():void
 		{
 			super.commitProperties();
+
+			if (this.bShowDateChanged) {
+				this.bShowDateChanged = false;
+				this.dtDateField.visible = this._showDate;
+				this.dtDateField.includeInLayout = this.showDate;
+			}
 
 			if (this.bShowTimeChanged) {
 				this.bShowTimeChanged = false;
@@ -547,6 +559,15 @@ package ctz.flex.components
 		{
 			this._showTime = value;
 			this.bShowTimeChanged = true;
+			this.invalidateProperties();
+		}
+
+		[Bindable]
+		public function get showDate():Boolean { return this._showDate; }
+		public function set showDate(value:Boolean):void
+		{
+			this._showDate = value;
+			this.bShowDateChanged = true;
 			this.invalidateProperties();
 		}
 
